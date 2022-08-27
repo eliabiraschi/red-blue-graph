@@ -1,3 +1,40 @@
-main.App {
+h1.title {
   text-align: center;
+}
+
+div.form {
+  display: flex;
+  flex-direction: column;
+}
+
+div.form ul, div.form p {
+  margin: 0;
+}
+
+div.form textarea {
+  margin: 1rem;
+}
+
+div.form .result {
+  margin-top: .5rem;
+  text-align: center;
+  padding: .4rem;
+}
+
+.success {
+  border: 2px dashed darkgreen;
+}
+
+.fail {
+  border: 2px dashed darkred;
+}
+
+div.form div.error {
+  margin-top: .5rem;
+  text-align: center;
+  background-color: tomato;
+  color: brown;
+  border-radius: 5px;
+  padding: .4rem;
+  cursor: pointer;
 }

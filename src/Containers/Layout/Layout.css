@@ -1,0 +1,13 @@
+header h1.title {
+  text-align: center;
+}
+
+main.App {
+  padding: 1rem;
+  max-width: 40rem;
+	flex: 1;
+}
+
+footer {
+	text-align: center;
+}
