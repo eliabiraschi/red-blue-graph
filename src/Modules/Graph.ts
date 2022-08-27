@@ -26,7 +26,6 @@ const addNeighbor = (
 
 export const generateAdjacencyList = (text: string): AdjacencyList => {
   const paths = text.split(/[\n,]/gi);
-  if (paths.length === 0) throw new Error('Invalid graph provided: no paths found');
   
   const adjacencyList = paths
     .reduce<AdjacencyList>((acc, pathString: string) => {
@@ -50,7 +49,7 @@ export const generateAdjacencyList = (text: string): AdjacencyList => {
       return acc;
     }, {});
 
-  if (Object.keys(adjacencyList).length <= 2) throw new Error('Invalid graph provided: less than 3 nodes');
+  if (Object.keys(adjacencyList).length <= 2) throw new Error('Invalid graph provided: less than 3 nodes.');
   return adjacencyList;
 };
 
