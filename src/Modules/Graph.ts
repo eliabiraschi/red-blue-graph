@@ -3,6 +3,7 @@ enum COLORS {
 	BLUE
 }
 
+export type Result = [boolean, boolean | null];
 export interface AdjacencyList {
 	[n: string]: Set<string>;
 }
@@ -23,9 +24,11 @@ const addNeighbor = (
     : new Set([path[i]]);
 };
 
-export const parse = (text: string): AdjacencyList => {
-  const adjacencyList = text
-    .split(/[\n,]/gi)
+export const generateAdjacencyList = (text: string): AdjacencyList => {
+  const paths = text.split(/[\n,]/gi);
+  if (paths.length === 0) throw new Error('Invalid graph provided: no paths found');
+  
+  const adjacencyList = paths
     .reduce<AdjacencyList>((acc, pathString: string) => {
       if (!pathString.length) return acc;
 
@@ -33,11 +36,13 @@ export const parse = (text: string): AdjacencyList => {
       
       if (path.length === 1) {
         const node = path[0];
+        if (node.length === 0) throw new Error('Invalid node: cannot be an empty string.')
         if (!acc[node]) acc[node] = new Set([]);
         return acc;
       }
 
       path.forEach((node, i) => {
+        if (node.length === 0) throw new Error('Invalid node: cannot be an empty string.')
         addNeighbor(acc, path, node, i + 1);
         addNeighbor(acc, path, node, i - 1);
       });
@@ -45,10 +50,11 @@ export const parse = (text: string): AdjacencyList => {
       return acc;
     }, {});
 
+  if (Object.keys(adjacencyList).length <= 2) throw new Error('Invalid graph provided: less than 3 nodes');
   return adjacencyList;
 };
 
-export const isBipartite = (adjacencyList: AdjacencyList): boolean => {
+export const isBipartiteAndConnected = (adjacencyList: AdjacencyList): Result => {
   const colors: ColorsMap = {};
   const stack: string[] = [Object.keys(adjacencyList)[0]];
   while (stack.length > 0) {
@@ -57,12 +63,18 @@ export const isBipartite = (adjacencyList: AdjacencyList): boolean => {
     const color = colors[node] || COLORS.RED;
     const neighborColor = color === COLORS.BLUE ? COLORS.RED : COLORS.BLUE;
     for (let neighbor of adjacencyList[node].values()) {
-      if (colors[neighbor] && colors[neighbor] !== neighborColor) return false;
+      if (colors[neighbor] && colors[neighbor] !== neighborColor) return [false, null];
       if (colors[neighbor]) continue;
       colors[neighbor] = neighborColor;
       stack.push(neighbor);
     }
   }
 
-  return Object.keys(colors).length === Object.keys(adjacencyList).length;
+  return [true, Object.keys(colors).length === Object.keys(adjacencyList).length];
+};
+
+export const evaluateGraph = (inputValue: string): Result => {
+  if (!inputValue || inputValue.length === 0) throw new Error('Invalid graph provided: empty');
+  const adjacencyList = generateAdjacencyList(inputValue);
+  return isBipartiteAndConnected(adjacencyList);
 };
