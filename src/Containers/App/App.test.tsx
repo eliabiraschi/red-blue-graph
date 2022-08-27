@@ -66,14 +66,14 @@ test('it should dispaly an error if the graph entered has an empty node', () => 
   expect(resultElement).toBeInTheDocument();
 });
 
-test('it should dispaly an error if the graph entered has less than 3 nodes', () => {
+test('it should dispaly an error if the graph entered has less than 2 nodes', () => {
   render(<App />);
   const textArea = screen.getByRole('textbox');
   const button = screen.getByRole('button');
 
-  fireEvent.change(textArea, { target: { value: 'a-b' } });
+  fireEvent.change(textArea, { target: { value: 'a' } });
   fireEvent.click(button);
 
-  const resultElement = screen.getByText(/invalid graph provided: less than 3 nodes./i);
+  const resultElement = screen.getByText(/invalid graph provided: less than 2 nodes./i);
   expect(resultElement).toBeInTheDocument();
 });

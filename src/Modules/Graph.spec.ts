@@ -29,21 +29,16 @@ describe('Graph Module', () => {
 			expect(adjList['c'].has('b')).equal(true);
     });
 
-		it('should throw an error if there are less than 3 nodes', () => {
+		it('should throw an error if there are less than 2 nodes', () => {
 			let path = '';
 			expect(() => generateAdjacencyList(path))
 				.to.throw()
-				.with.property('message', 'Invalid graph provided: less than 3 nodes.');
+				.with.property('message', 'Invalid graph provided: less than 2 nodes.');
 			
 			path = 'a';
 			expect(() => generateAdjacencyList(path))
 				.to.throw()
-				.with.property('message', 'Invalid graph provided: less than 3 nodes.');
-			
-			path = 'a-b';
-			expect(() => generateAdjacencyList(path))
-				.to.throw()
-				.with.property('message', 'Invalid graph provided: less than 3 nodes.');
+				.with.property('message', 'Invalid graph provided: less than 2 nodes.');
     });
 
 		it('should throw an error if a node is empty', () => {

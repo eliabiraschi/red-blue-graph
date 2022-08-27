@@ -30,21 +30,15 @@ function App() {
     <Layout title="Red-Blue Graph">
       <div className="intro">
         <p>
-          This small webapp checks whether a provided graph is connected
-          and red-blue colorable.
-        </p>
-        <p>
-          Graph theory related readings:
-          1) <ExternalLink href="https://en.wikipedia.org/wiki/Bipartite_graph">
-            bipartite graph
-          </ExternalLink>;
-          2) <ExternalLink href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)">
-            connected graph
-          </ExternalLink>;
+          This small webapp checks whether a provided graph is <ExternalLink href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)">
+            connected
+          </ExternalLink> and <ExternalLink href="https://en.wikipedia.org/wiki/Bipartite_graph">
+            red-blue colorable
+          </ExternalLink>.
         </p>
       </div>
       <div className="form">
-        <p><strong>Enter a graph by providing some paths:</strong></p>
+        <p><strong>Enter a graph by providing some paths with the following format:</strong></p>
         <ul>
           <li>a word is node</li>
           <li>a dash is and edge</li>

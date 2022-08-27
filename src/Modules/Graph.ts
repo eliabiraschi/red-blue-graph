@@ -49,7 +49,9 @@ export const generateAdjacencyList = (text: string): AdjacencyList => {
       return acc;
     }, {});
 
-  if (Object.keys(adjacencyList).length <= 2) throw new Error('Invalid graph provided: less than 3 nodes.');
+  if (Object.keys(adjacencyList).length < 2) {
+    throw new Error('Invalid graph provided: less than 2 nodes.');
+  }
   return adjacencyList;
 };
 
