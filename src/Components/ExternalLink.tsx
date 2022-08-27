@@ -7,7 +7,7 @@ interface Props {
 
 function ExternalLink(props: Props) {
 	return (
-		<a href={props.href} target="_black" rel="noreferrer">{ props.children }</a>
+		<a href={props.href} target="_blank" rel="noreferrer">{ props.children }</a>
 	);
 }
 

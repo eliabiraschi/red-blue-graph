@@ -1,7 +1,10 @@
 import 'mocha';
 import { expect } from 'chai';
 
-import { generateAdjacencyList } from './Graph';
+import {
+	generateAdjacencyList,
+	isBipartiteAndConnected
+} from './Graph';
 
 describe('Graph Module', () => {
   describe('generateAdjacencyList', () => {
@@ -55,4 +58,30 @@ describe('Graph Module', () => {
 					.with.property('message', 'Invalid node: cannot be an empty string.');
 		});
   });
+
+	describe('isBipartiteAndConnected', () => {
+		it('should return false and stop exploring the graph at once when it\'s not a bigraph', () => {
+			const path = 'a-b-c-a, d-e-f-g'
+			const adjacencyList = generateAdjacencyList(path);
+			const [ isBipartite, isConnected ] = isBipartiteAndConnected(adjacencyList);
+			expect(isBipartite).be.false;
+			expect(isConnected).be.null;
+		});
+
+		it('should return [true, false] when a piece of the graph is biparite, but as a whole is not connected', () => {
+			const path = 'a-b-c, d-e-f-g'
+			const adjacencyList = generateAdjacencyList(path);
+			const [ isBipartite, isConnected ] = isBipartiteAndConnected(adjacencyList);
+			expect(isBipartite).be.true;
+			expect(isConnected).be.false;
+		});
+
+		it('should return [true, true] when the graph is biparite and connected', () => {
+			const path = 'a-b-c, c-d-e-f-g'
+			const adjacencyList = generateAdjacencyList(path);
+			const [ isBipartite, isConnected ] = isBipartiteAndConnected(adjacencyList);
+			expect(isBipartite).be.true;
+			expect(isConnected).be.true;
+		});
+	});
 });
