@@ -1,0 +1,13 @@
+.result {
+  margin-top: .5rem;
+  text-align: center;
+  padding: .4rem;
+}
+
+.success {
+  border: 2px dashed darkgreen;
+}
+
+.fail {
+  border: 2px dashed darkred;
+}

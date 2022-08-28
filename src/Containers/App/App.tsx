@@ -1,14 +1,15 @@
 import React, { useState, ChangeEvent } from 'react';
 import Layout from '../Layout/Layout';
-import ExternalLink from '../../Components/ExternalLink';
-import './App.css';
-
+import ExternalLink from '../../Components/ExternalLink/ExternalLink';
+import Result from '../../Components/Result/Result';
+import ErrorBox from '../../Components/ErrorBox/ErrorBox';
 import { evaluateGraph } from '../../Modules/Graph';
-import type { Result } from '../../Modules/Graph';
+import type { Result as ResultType } from '../../Modules/Graph';
+import './App.css';
 
 function App() {
   const [ inputValue, setInputValue ] = useState('');
-  const [ result, setResult ] = useState<Result|null>(null);
+  const [ result, setResult ] = useState<ResultType|null>(null);
   const [ error, setError ] = useState<string|null>(null);
   
   const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -50,21 +51,8 @@ function App() {
           onChange={handleInputChange}
         />
         <button onClick={handleCheckClick}>Check</button>
-        {
-          result !== null &&
-          <div className={`result ${result[0] && result[1] ? 'success' : 'fail' }`}>
-            The graph entered
-            { result[0] === false && " is NOT red-blue colorable - analysis aborted" }
-            { (result[0] === true && result[1] === false) && " is at least partially red-blue colorable, but NOT connected - analysis aborted" }
-            { (result[0] && result[1]) && " is red-blue colorable and connected" }
-          </div>
-        }
-        {
-          error !== null &&
-          <div className="error" onClick={() => { setError(null); }}>
-            {error}
-          </div>
-        }
+        <Result value={result} />
+        <ErrorBox message={error} onClick={() => { setError(null); }} />
       </div>
     </Layout>
   );

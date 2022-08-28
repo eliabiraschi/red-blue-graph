@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import ExternalLink from '../../Components/ExternalLink'
+import ExternalLink from '../../Components/ExternalLink/ExternalLink'
 import './Layout.css';
 
 interface Props {
@@ -14,8 +14,8 @@ function Layout(props: Props) {
 		</header>
 		<main className="App">{ props.children }</main>
 		<footer>
-			realized by <ExternalLink href="https://www.elia.dev/">Elia Biraschi</ExternalLink><br />
-			Project Source Code
+			<div>realized by <ExternalLink href="https://www.elia.dev/">Elia Biraschi</ExternalLink></div>
+			<div>Project Source Code</div>
 		</footer>
 	</>);
 }

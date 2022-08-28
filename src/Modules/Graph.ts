@@ -77,5 +77,8 @@ export const isBipartiteAndConnected = (adjacencyList: AdjacencyList): Result =>
 export const evaluateGraph = (inputValue: string): Result => {
   if (!inputValue || inputValue.length === 0) throw new Error('Invalid graph provided: empty');
   const adjacencyList = generateAdjacencyList(inputValue);
+  if (process.env.NODE_ENV === 'development') {
+    console.log(adjacencyList);
+  }
   return isBipartiteAndConnected(adjacencyList);
 };

@@ -1,0 +1,9 @@
+.error {
+  margin-top: .5rem;
+  text-align: center;
+  background-color: tomato;
+  color: brown;
+  border-radius: 5px;
+  padding: .4rem;
+  cursor: pointer;
+}
