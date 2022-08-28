@@ -14,8 +14,8 @@ function Layout(props: Props) {
 		</header>
 		<main className="App">{ props.children }</main>
 		<footer>
-			<div>realized by <ExternalLink href="https://www.elia.dev/">Elia Biraschi</ExternalLink></div>
-			<div>Project Source Code</div>
+			<span>by <ExternalLink href="https://www.elia.dev/">Elia Biraschi</ExternalLink></span>
+			<ExternalLink href="https://github.com/eliabiraschi/red-blue-graph">Project Source Code</ExternalLink>
 		</footer>
 	</>);
 }
