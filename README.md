@@ -19,7 +19,7 @@ It probably works with NodeJS 14, but I haven't tested it.
 ### Installation
 
 ```bash
-$ git clone
+$ git clone git@github.com:eliabiraschi/red-blue-graph.git
 $ cd red-blue
 $ npm i
 ```
