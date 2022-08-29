@@ -8,13 +8,13 @@ test('renders the element with the success class', () => {
   expect(resultElement).toHaveClass('success');
 });
 
-test('renders the element with the fail class', () => {
+test('renders the element with the fail class when the graph is not biparite', () => {
   render(<Result value={[false, null]} />);
   const resultElement = screen.getByText(/The graph entered/i);
   expect(resultElement).toHaveClass('fail');
 });
 
-test('renders the element with the fail class', () => {
+test('renders the element with the fail class when the graph is not connected', () => {
   render(<Result value={[true, false]} />);
   const resultElement = screen.getByText(/The graph entered/i);
   expect(resultElement).toHaveClass('fail');

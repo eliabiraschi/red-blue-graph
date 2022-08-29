@@ -16,7 +16,7 @@ test('the result should appear', () => {
   fireEvent.change(textArea, { target: { value: 'a-b-c' } });
   fireEvent.click(button);
 
-  const resultElement = screen.getByText(/is red-blue colorable and connected/i);
+  const resultElement = screen.getByText(/is red-blue colorable!/i);
   expect(resultElement).toBeInTheDocument();
 });
 
@@ -28,7 +28,7 @@ test('the fail-result should appear when providing a non bigraph', () => {
   fireEvent.change(textArea, { target: { value: 'a-b-c-a' } });
   fireEvent.click(button);
 
-  const resultElement = screen.getByText(/is NOT red-blue colorable - analysis aborted/i);
+  const resultElement = screen.getByText(/is NOT red-blue colorable: not bipartite/i);
   expect(resultElement).toBeInTheDocument();
 });
 
@@ -40,7 +40,7 @@ test('the fail-result should appear when providing a not connected graph', () =>
   fireEvent.change(textArea, { target: { value: 'a-b-c, d' } });
   fireEvent.click(button);
 
-  const resultElement = screen.getByText(/is at least partially red-blue colorable, but NOT connected - analysis aborted/i);
+  const resultElement = screen.getByText(/is NOT red-blue colorable: not connected/i);
   expect(resultElement).toBeInTheDocument();
 });
 

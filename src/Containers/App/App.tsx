@@ -31,10 +31,12 @@ function App() {
     <Layout title="Red-Blue Graph">
       <div className="intro">
         <p>
-          This small webapp checks whether a provided graph is <ExternalLink href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)">
+          This small webapp checks whether a provided graph is red-blue colorable.
+        </p>
+        <p>To be red-blue colorable, a graph has to be both <ExternalLink href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)">
             connected
           </ExternalLink> and <ExternalLink href="https://en.wikipedia.org/wiki/Bipartite_graph">
-            red-blue colorable
+            bipartite
           </ExternalLink>.
         </p>
       </div>

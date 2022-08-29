@@ -12,9 +12,9 @@ function Result(props: Props) {
 			props.value !== null &&
 			<div className={`result ${props.value[0] && props.value[1] ? 'success' : 'fail'}`}>
 				The graph entered
-				{props.value[0] === false && " is NOT red-blue colorable - analysis aborted"}
-				{(props.value[0] === true && props.value[1] === false) && " is at least partially red-blue colorable, but NOT connected - analysis aborted"}
-				{(props.value[0] && props.value[1]) && " is red-blue colorable and connected"}
+				{props.value[0] === false && " is NOT red-blue colorable: not bipartite"}
+				{(props.value[0] === true && props.value[1] === false) && " is NOT red-blue colorable: not connected"}
+				{(props.value[0] && props.value[1]) && " is red-blue colorable!"}
 			</div>
 		}
 	</>);
